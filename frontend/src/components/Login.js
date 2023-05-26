@@ -3,6 +3,60 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from 'utils/urls';
 import { user } from 'reducers/user';
+import styled from 'styled-components/macro';
+
+const StyledSection = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+max-width: 50vw;
+background-color: rgba(255,255,255,0.9);
+margin-top: 50%;
+border-radius: 10px 25px;
+height: 50vh;
+`
+const StyledDiv1 = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+margin-top: 40px;
+margin-bottom: 20px;
+`
+const Styledh1 = styled.h1`
+margin: 80px 30px 0 30px;
+color: #DFA8AA;
+`
+const Styledh2 = styled.h2`
+color: #DFA8AA;
+`
+const StyledLabel = styled.label`
+text-align: center;
+margin-top: 15px;
+padding: 5px;
+`
+const StyledForm = styled.form`
+display: flex;
+flex-direction: column;
+`
+const StyledInput = styled.input`
+background-color: transparent;
+border: 1px solid black;
+outline: none;
+padding: 5px 5px 5px 10px;
+border-radius: 5px;
+font-family: "Montserrat", sans-serif;
+`
+const StyledBtn = styled.button`
+margin: 50px;
+font-family: "Montserrat", sans-serif;
+background-color: #EFDAD7;
+padding: 10px 20px;
+border: none;
+border-radius: 10px 15px;
+font-size: 16px;
+outline: none;
+cursor: pointer;
+`
 
 export const Login = () => {
     const [username, setUsername] = useState("");
@@ -43,34 +97,43 @@ export const Login = () => {
         })
     }
     return (
-        <>
-            <label htmlFor="register">Register</label>
-            <input
-                type="radio"
-                id="register"
-                checked={mode === "register"}
-                onChange={() => setMode("register")} />
-            <label htmlFor="login">Log in</label>
-            <input
-                type="radio"
-                id="login"
-                checked={mode === "login"}
-                onChange={() => setMode("login")} />
-            <form onSubmit={onFormSubmit}>
-                <label htmlFor="username">Username</label>
+        <StyledSection>
+            <Styledh1>What is buzzing around in your head?</Styledh1>
+            <Styledh2>Log in to jot down your thoughts.</Styledh2>
+            <StyledDiv1>
+                <label className="container" htmlFor="register">Register
                 <input
-                    type="text"
-                    id="username"
-                    value={username}
-                    onChange={e => setUsername(e.target.value)} />
-                <label htmlFor="password">Password</label>
+                    type="radio"
+                    id="register"
+                    checked={mode === "register"}
+                    onChange={() => setMode("register")} />
+                <span className="checkmark"></span>
+                </label>
+                <label className="container" htmlFor="login">Log in
                 <input
-                    type="password"
-                    id="password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)} />
-                <button type="submit">Submit</button>
-            </form>
-        </>
+                    type="radio"
+                    id="login"
+                    checked={mode === "login"}
+                    onChange={() => setMode("login")} />
+                <span className="checkmark"></span>
+                </label>
+            </StyledDiv1>
+                <StyledForm onSubmit={onFormSubmit}>
+                    <StyledLabel htmlFor="username">Username:</StyledLabel>
+                    <StyledInput
+                        type="text"
+                        id="username"
+                        value={username}
+                        onChange={e => setUsername(e.target.value)} />
+                    <StyledLabel htmlFor="password">Password:</StyledLabel>
+                    <StyledInput
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)} />
+                <StyledBtn type="submit">Submit</StyledBtn>
+                </StyledForm>
+                
+        </StyledSection>
     )
 }

@@ -95,18 +95,10 @@ app.post("/login", async (req, res) => {
   }
 })
 
-// Thoughts
-const HappyThoughtSchema = new mongoose.Schema({
+// Posts
+const ThoughtSchema = new mongoose.Schema({
   message: {
     type: String,
-  },
-  hearts: {
-    type: Number,
-    default: 0
-  },
-  createdAt: {
-    type: Date, 
-    default: Date.now
   },
   user: {
     type: String,
@@ -114,7 +106,7 @@ const HappyThoughtSchema = new mongoose.Schema({
   }
 });
 
-const HappyThought = mongoose.model("HappyThought", HappyThoughtSchema);
+const Thought = mongoose.model("Thought", ThoughtSchema);
 
 // Authenticate the user
 const authenticateUser = async (req, res, next) => {
@@ -139,7 +131,7 @@ const authenticateUser = async (req, res, next) => {
 
 app.get("/thoughts", authenticateUser);
 app.get("/thoughts", async (req, res) => {
-  const thoughts = await HappyThought.find({});
+  const thoughts = await Thought.find({});
   res.status(200).json({success: true, response: thoughts})
 });
 
@@ -148,7 +140,7 @@ app.post("/thoughts", async (req, res) => {
   const { message } = req.body;
   const accessToken = req.header("Authorization");
   const user = await User.findOne({accessToken});
-  const thoughts = await new HappyThought({message, user: user._id}).save();
+  const thoughts = await new Thought({message, user: user._id}).save();
 
   res.status(200).json({success: true, response: thoughts})
 });

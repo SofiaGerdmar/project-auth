@@ -4,7 +4,33 @@ import { useNavigate } from 'react-router-dom';
 import { thoughts } from 'reducers/thoughts';
 import { API_URL } from 'utils/urls';
 import { user } from 'reducers/user';
+import styled from 'styled-components';
 
+const StyledSection = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+max-width: 50vw;
+background-color: rgba(255,255,255,0.9);
+margin-top: 50%;
+border-radius: 10px 25px;
+height: 50vh;
+`
+const Styledh1 = styled.h1`
+margin: 80px 30px 20px 30px;
+color: #DFA8AA;
+`
+const StyledBtn = styled.button`
+margin: 50px;
+font-family: "Montserrat", sans-serif;
+background-color: #EFDAD7;
+padding: 10px 20px;
+border: none;
+border-radius: 10px 15px;
+font-size: 16px;
+outline: none;
+cursor: pointer;
+`
 export const Main = () => {
     const thoughtsItems = useSelector((store) => store.thoughts.items);
     const dispatch = useDispatch();
@@ -43,16 +69,22 @@ export const Main = () => {
         dispatch(user.actions.setUserId(null));
         dispatch(user.actions.setError(null));
     }
+    const capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
     return (
-        <>
-            <button type="button" onClick={onLogoutButtonClick}>Log out</button>
-            {username ? (<h2>These are the thoughts of {username.toUpperCase()}</h2>): ""}
+        <StyledSection>
+            
+            {username ? (<Styledh1>These are the thoughts of {capitalizeFirstLetter(username)}:</Styledh1>): ""}
             {thoughtsItems.map(item => {
                 return (
-                    <p key={item._id}>{item.message}</p>
+                    <ul>
+                        <li key={item._id}>{item.message}</li>
+                    </ul>
                 )
             })}
-        </>
+            <StyledBtn type="button" onClick={onLogoutButtonClick}>Log out</StyledBtn>
+        </StyledSection>
     )
 }
     
