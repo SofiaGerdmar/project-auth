@@ -9,30 +9,46 @@ const StyledSection = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-max-width: 50vw;
+max-width: 90%;
 background-color: rgba(255,255,255,0.9);
-margin-top: 50%;
+margin: 60px auto;
 border-radius: 10px 25px;
-height: 50vh;
 `
 const StyledDiv1 = styled.div`
 display: flex;
 flex-direction: row;
 align-items: center;
 margin-top: 40px;
-margin-bottom: 20px;
+margin-bottom: 0;
 `
 const Styledh1 = styled.h1`
-margin: 80px 30px 0 30px;
+margin: 60px auto 0;
+padding: 0 25px;
+text-align: center;
+font-size: 20px;
 color: #DFA8AA;
+
+@media (min-width: 768px) {
+    font-size: 40px;
+}
 `
 const Styledh2 = styled.h2`
+margin: 20px auto 0;
+padding: 0 50px;
+text-align: center;
+font-size: 15px;
+font-weight: 600;
 color: #DFA8AA;
+
+@media (min-width: 768px) {
+    font-size: 20px;
+}
 `
 const StyledLabel = styled.label`
-text-align: center;
+text-align: left;
 margin-top: 15px;
-padding: 5px;
+font-size: 14px;
+padding: 0 0 3px 0
 `
 const StyledForm = styled.form`
 display: flex;
@@ -47,7 +63,8 @@ border-radius: 5px;
 font-family: "Montserrat", sans-serif;
 `
 const StyledBtn = styled.button`
-margin: 50px;
+margin: 20px;
+margin-bottom: 60px;
 font-family: "Montserrat", sans-serif;
 background-color: #EFDAD7;
 padding: 10px 20px;
@@ -98,8 +115,8 @@ export const Login = () => {
     }
     return (
         <StyledSection>
-            <Styledh1>What is buzzing around in your head?</Styledh1>
-            <Styledh2>Log in to jot down your thoughts.</Styledh2>
+            <Styledh1>Do you want to know a secret?</Styledh1>
+            <Styledh2>Log in to reveal the latest gossip</Styledh2>
             <StyledDiv1>
                 <label className="container" htmlFor="register">Register
                 <input

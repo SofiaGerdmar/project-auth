@@ -10,11 +10,12 @@ const StyledSection = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-max-width: 50vw;
+text-align: center;
+max-width: 80vw;
 background-color: rgba(255,255,255,0.9);
 margin-top: 50%;
 border-radius: 10px 25px;
-height: 50vh;
+
 `
 const Styledh1 = styled.h1`
 margin: 80px 30px 20px 30px;
@@ -75,7 +76,7 @@ export const Main = () => {
     return (
         <StyledSection>
             
-            {username ? (<Styledh1>These are the thoughts of {capitalizeFirstLetter(username)}:</Styledh1>): ""}
+            {username ? (<Styledh1>Hi there {capitalizeFirstLetter(username)}!</Styledh1>): ""}
             {thoughtsItems.map(item => {
                 return (
                     <ul>
